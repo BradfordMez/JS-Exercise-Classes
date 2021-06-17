@@ -115,6 +115,7 @@ const bradford = new Person('Bradford', 20)
     }
   }
   
+  
   /*
     TASK 4
       - Write an Instructor class extending Lambdasian.
@@ -137,9 +138,11 @@ const bradford = new Person('Bradford', 20)
       this.catchPhrase = objectKeys.catchPhrase;
    }
    demo(subject){
-     
+     return `Today we are learning about ${subject}`
    }
-
+   grade(student, subject){
+     return `${student.name} receives a perfect score on ${subject}`
+   }
  }
   /*
     TASK 5
@@ -156,8 +159,22 @@ const bradford = new Person('Bradford', 20)
           + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
           + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
   */
- class Student {
-     
+ class Student extends Lambdasian{
+   constructor(stuKeys){
+     super(stuKeys);
+     this.previousBackground = stuKeys.previousBackground;
+     this.className = stuKeys.className;
+     this.favSubjects = stuKeys.favSubjects
+   }
+   listSubjects(){
+     return `Loves ${this.favSubjects}`
+   }
+   PRAssignment(subject){
+     return `${this.name} has submitted a PR for ${subject}`
+   }
+   sprintChallenge(subject){
+     return `${this.name} has begun sprint challenge on ${subject}`
+   }
  }
   
   /*
