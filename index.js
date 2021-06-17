@@ -85,11 +85,20 @@ const bradford = new Person('Bradford', 20)
       this.milesPerGallon = milesPerGallon;
     }
     fill(gallons){
-
+      this.tank = this.tank + gallons;
     }
     drive(distance){
-
+      const driveableMiles = this.tank * this.milesPerGallon;
+      if(distance <= driveableMiles){
+        this.odometer = this.odometer + distance;
+        this.tank = this.tank - (distance / this.milesPerGallon);
+      }else{
+        this.odometer = this.odometer + driveableMiles;
+        this.tank = 0;
+        return `I ran out of fuel at ${this.odometer} miles!`
+      }
     }
+    
   }
   
   /*
@@ -190,8 +199,18 @@ const bradford = new Person('Bradford', 20)
           + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
           + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
   */
- class ProjectManager {
-     
+ class ProjectManager extends Instructor{
+     constructor(attrs){
+       super(attrs);
+       this.gradClassName = attrs.gradClassName;
+       this.favInstructor = attrs.favInstructor;
+     }
+     standUp(channel){
+       return `${this.name} announces to ${channel}, @channel standy times!`
+     }
+     debugsCode(student, subject){
+       return `${this.name} debugs ${student.name}'s code on ${subject}`
+     }
  }
   /*
     STRETCH PROBLEM (no tests!)
